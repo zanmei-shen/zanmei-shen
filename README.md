@@ -17,9 +17,9 @@ I am currently learning to develop tools and websites in these areas:
 I manage my mission projects through my secondary account, **[@ipraisethelord](https://github.com/ipraisethelord)**. We are currently focused on:
 
 * **Build School Together:** Construction of schools in India to provide quality education. 
-    👉 [www.buildschooltogether.com](https://www.buildschooltogether.com)
+   - 👉 [www.buildschooltogether.com](https://www.buildschooltogether.com)
 * **Seminary Support:** Trying to raise rice fund to feed seminary students in India.
-    👉 *[@ipraisethelord/feedstudents](https://github.com/ipraisethelord/feedstudents)
+   - 👉 *[@ipraisethelord/feedstudents](https://github.com/ipraisethelord/feedstudents)
 ---
 
 ### 🤝 Connect with Me
