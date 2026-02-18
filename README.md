@@ -19,7 +19,7 @@ I manage my mission projects through my secondary account, **[@ipraisethelord](h
 * **Build School Together:** Construction of schools in India to provide quality education. 
    - 👉 [www.buildschooltogether.com](https://www.buildschooltogether.com)
 * **Seminary Support:** Trying to raise rice fund to feed seminary students in India.
-   - 👉 *[@ipraisethelord/feedstudents](https://github.com/ipraisethelord/feedstudents)
+   - 👉 [@ipraisethelord/feedstudents](https://github.com/ipraisethelord/feedstudents)
 ---
 
 ### 🤝 Connect with Me
