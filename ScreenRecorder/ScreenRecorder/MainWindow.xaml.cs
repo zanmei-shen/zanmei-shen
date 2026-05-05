@@ -5,7 +5,6 @@ using ScreenRecorder.Encoding;
 using ScreenRecorder.Models;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Windows.Graphics.Capture;
@@ -22,7 +21,6 @@ public sealed partial class MainWindow : Window
 {
     // ── State ────────────────────────────────────────────────────────────────
 
-    private readonly List<GraphicsCapturePicker> _monitors = new();
     private ScreenCaptureService? _captureService;
     private VideoEncoder? _encoder;
     private CancellationTokenSource? _cts;

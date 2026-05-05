@@ -57,30 +57,28 @@ internal static class Direct3D11Helper
             IntPtr.Zero,
             IntPtr.Zero);
 
-        using var d3dDevice = new UnknownWrapper(d3dDevicePtr);
+        // Wrap the raw D3D11 device pointer so it is released when we exit this scope.
+        IntPtr d3dDevicePtr2 = d3dDevicePtr; // captured for the finally block
+        try
+        {
+            // Query IDXGIDevice from the D3D11 device.
+            int hr = Marshal.QueryInterface(d3dDevicePtr, ref IID_IDXGIDevice, out IntPtr dxgiPtr);
+            if (hr < 0) Marshal.ThrowExceptionForHR(hr);
 
-        // Query IDXGIDevice from the D3D11 device.
-        IntPtr dxgiDevicePtr = Marshal.GetComInterfaceForObject(
-            Marshal.GetObjectForIUnknown(d3dDevicePtr),
-            typeof(object));
+            CreateDirect3D11DeviceFromDXGIDevice(dxgiPtr, out IntPtr graphicsDevicePtr);
+            Marshal.Release(dxgiPtr);
 
-        int hr = Marshal.QueryInterface(d3dDevicePtr, ref IID_IDXGIDevice, out IntPtr dxgiPtr);
-        if (hr < 0) Marshal.ThrowExceptionForHR(hr);
+            var inspectable = Marshal.GetObjectForIUnknown(graphicsDevicePtr) as IDirect3DDevice
+                ?? throw new InvalidOperationException("Could not create IDirect3DDevice.");
 
-        CreateDirect3D11DeviceFromDXGIDevice(dxgiPtr, out IntPtr graphicsDevicePtr);
-        Marshal.Release(dxgiPtr);
-
-        var inspectable = Marshal.GetObjectForIUnknown(graphicsDevicePtr) as IDirect3DDevice
-            ?? throw new InvalidOperationException("Could not create IDirect3DDevice.");
-
-        Marshal.Release(graphicsDevicePtr);
-        return inspectable;
-    }
-
-    // ── Private helpers ───────────────────────────────────────────────────────
-
-    private sealed class UnknownWrapper(IntPtr ptr) : IDisposable
-    {
-        public void Dispose() { if (ptr != IntPtr.Zero) Marshal.Release(ptr); }
+            Marshal.Release(graphicsDevicePtr);
+            return inspectable;
+        }
+        finally
+        {
+            // Release the D3D11 device COM pointer now that the WinRT wrapper owns a reference.
+            if (d3dDevicePtr2 != IntPtr.Zero)
+                Marshal.Release(d3dDevicePtr2);
+        }
     }
 }
