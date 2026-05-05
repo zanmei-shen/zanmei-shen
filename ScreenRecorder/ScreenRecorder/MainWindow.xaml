@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window
+    x:Class="ScreenRecorder.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ScreenRecorder"
+    Title="Screen Recorder">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+          Margin="16">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- ── Title ── -->
+        <TextBlock Grid.Row="0"
+                   Text="🎬 Screen Recorder"
+                   Style="{StaticResource TitleTextBlockStyle}"
+                   Margin="0,0,0,16"/>
+
+        <!-- ── Options ── -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="12" Margin="0,0,0,12">
+
+            <ComboBox x:Name="MonitorCombo"
+                      Header="Display"
+                      Width="200"
+                      PlaceholderText="Select display…"/>
+
+            <ComboBox x:Name="FrameRateCombo"
+                      Header="Frame rate"
+                      Width="140"
+                      SelectedIndex="1">
+                <ComboBoxItem Content="24 fps"/>
+                <ComboBoxItem Content="30 fps"/>
+                <ComboBoxItem Content="60 fps"/>
+            </ComboBox>
+
+            <ComboBox x:Name="BitrateCombo"
+                      Header="Bitrate"
+                      Width="160"
+                      SelectedIndex="1">
+                <ComboBoxItem Content="4 Mbps"/>
+                <ComboBoxItem Content="8 Mbps"/>
+                <ComboBoxItem Content="16 Mbps"/>
+            </ComboBox>
+
+        </StackPanel>
+
+        <!-- ── Output path ── -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Spacing="8" Margin="0,0,0,12">
+            <TextBox x:Name="OutputPathBox"
+                     Header="Output file (.mp4)"
+                     Width="460"
+                     IsReadOnly="True"
+                     PlaceholderText="Click Browse to choose a save location…"/>
+            <Button x:Name="BrowseButton"
+                    Content="Browse…"
+                    VerticalAlignment="Bottom"
+                    Click="BrowseButton_Click"/>
+        </StackPanel>
+
+        <!-- ── Live preview ── -->
+        <Border Grid.Row="3"
+                Background="#FF1A1A2E"
+                CornerRadius="8"
+                MinHeight="240"
+                Margin="0,0,0,12">
+            <TextBlock x:Name="PreviewPlaceholder"
+                       Text="Preview will appear here while recording"
+                       Foreground="#88FFFFFF"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+        </Border>
+
+        <!-- ── Controls ── -->
+        <StackPanel Grid.Row="4" Orientation="Horizontal" Spacing="8" HorizontalAlignment="Right">
+            <TextBlock x:Name="TimerLabel"
+                       Text="00:00"
+                       Style="{StaticResource SubtitleTextBlockStyle}"
+                       VerticalAlignment="Center"
+                       Margin="0,0,16,0"/>
+            <Button x:Name="StartButton"
+                    Content="▶  Start Recording"
+                    Style="{StaticResource AccentButtonStyle}"
+                    Click="StartButton_Click"/>
+            <Button x:Name="StopButton"
+                    Content="⏹  Stop"
+                    IsEnabled="False"
+                    Click="StopButton_Click"/>
+        </StackPanel>
+
+    </Grid>
+</Window>

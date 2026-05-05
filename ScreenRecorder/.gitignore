@@ -1,0 +1,36 @@
+# ── Build artefacts ──────────────────────────────────────────────────────────
+bin/
+obj/
+publish/
+
+# ── NuGet ────────────────────────────────────────────────────────────────────
+*.nupkg
+*.snupkg
+packages/
+project.assets.json
+*.nuget.dgspec.json
+*.nuget.g.props
+*.nuget.g.targets
+
+# ── Visual Studio ────────────────────────────────────────────────────────────
+.vs/
+*.user
+*.suo
+*.userprefs
+*.VC.db
+*.VC.opendb
+*.sln.ide
+
+# ── Windows App SDK packaging ────────────────────────────────────────────────
+AppPackages/
+BundleArtifacts/
+_pkginfo.txt
+*.msix
+*.msixbundle
+*.appx
+*.appxbundle
+
+# ── OS junk ──────────────────────────────────────────────────────────────────
+Thumbs.db
+Desktop.ini
+.DS_Store
